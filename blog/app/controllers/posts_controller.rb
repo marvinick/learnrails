@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 	def new
+		@post = Post.new
 	end 
 
 	def index 
@@ -7,10 +8,13 @@ class PostsController < ApplicationController
   end 
 
 	def create
-		@post = Post.new(params[:post].permit(:title, :text))
+		@post = Post.new(post_params)
 
-		@post.save
+		if @post.save
 		redirect_to @post
+	  else
+	  	render 'new'
+	  end 
 	end
 
 	def show
