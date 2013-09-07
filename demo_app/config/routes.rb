@@ -1,4 +1,6 @@
 DemoApp::Application.routes.draw do
+  resources :posts
+
   resources :memberships
 
   resources :groups
