@@ -25,16 +25,17 @@ class PostsController < ApplicationController
 
   def edit 
     @post = Post.find(params[:id])
-
-    if @post.save
-      flash[:notice] = "You created a post"
-    else 
-      render :edit
-    end 
   end 
 
   def update
-  
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      flash[:notice] = "This post was updated"
+      redirect_to post_path(@post)
+    else
+      render :edit 
+    end 
   end 
 
   private 
